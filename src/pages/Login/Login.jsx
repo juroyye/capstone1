@@ -1,10 +1,13 @@
+import { Outlet } from 'react-router-dom'
 import '../Login/Login.css'
 
 import React from 'react'
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <div> 
+      Login
+    </div>
   )
 }
 

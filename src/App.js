@@ -1,38 +1,31 @@
-import Home from "./pages/Home/Home";
+import Landing from "./pages/Landing/Landing";
 import Login from "./pages/Login/Login";
+import UserDash from "./pages/UserDash/UserDash";
 import News from "./pages/News/News";
 import Stocks from "./pages/Stocks/Stocks";
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-import { createRoot } from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { 
+  BrowserRouter,
+   Routes,
+   Route,
+   } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: '/home',
-    element: <Home/>,
-  },
-  {
-    path: '/login',
-    element: <Login/>,
-  },
-  {
-    path: '/news',
-    element: <News/>,
-  },
-  {
-    path: '/stocks',
-    element: <Stocks/>,
-  },
-]);
+   
+
 
 function App() {
   return (
-    <div className="App">
-     <RouterProvider router={router} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/userdash" element={<UserDash />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/stocks" element={<Stocks />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,5 +1,8 @@
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
+import News from "./pages/News/News";
+import Stocks from "./pages/Stocks/Stocks";
+
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
@@ -14,6 +17,14 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login/>,
+  },
+  {
+    path: '/news',
+    element: <News/>,
+  },
+  {
+    path: '/stocks',
+    element: <Stocks/>,
   },
 ]);
 

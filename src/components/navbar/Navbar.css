@@ -1,5 +1,14 @@
+body{
+    border: 1px solid black;
+}
+
 .selections{
     display: flex;
     justify-content: end;
     justify-content: space-around;
+}
+
+button{
+    border: none;
+    background: none;
 }

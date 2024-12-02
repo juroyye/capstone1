@@ -6,7 +6,6 @@ import Footer from '../../components/footer/Footer'
 const Landing = () => {
   return (
     <div className='home'>
-      Landing
       <Navbar/>
       <Footer />
     </div>

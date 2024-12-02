@@ -1,0 +1,5 @@
+.selections{
+    display: flex;
+    justify-content: end;
+    justify-content: space-around;
+}

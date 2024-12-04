@@ -2,13 +2,22 @@ body{
     border: 1px solid black;
 }
 
-.selections{
-    display: flex;
-    justify-content: end;
-    justify-content: space-around;
-}
 
 button{
     border: none;
     background: none;
+    display: flex;
 }
+
+#header1{
+    border: 1px solid black;
+  display: flex;
+}
+
+.btns{
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+
+

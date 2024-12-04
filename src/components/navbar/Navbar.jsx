@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "../../imports/images/enMasselogo.webp"
+import logo from "../../imports/images/enmasse.png"
 
 
 const Navbar = () => {
@@ -7,13 +7,16 @@ const Navbar = () => {
 
 <div class="flex items-center">
 
-  <div class="flex w-3/5 items-center space-x-2 text-purple-700">
-          <img src={logo} alt='logo' style={{ width: '70px', height: '70px', borderBottomRightRadius: '5px'}}/>
-          <p>En Masse</p>
+  <div class="flex w-1/4 position: absolute">
+          <img src={logo} alt='logo' style={{ width: '400px', height: '400px', borderBottomRightRadius: '5px'}}/>
   </div>
 
+  {/* <form id="form"> 
+  <input type="search" id="query" name="q" placeholder="Search..."/>
+  <button>Search</button>
+</form> */}
   
-  <div class="flex ml-8 space-x-24 text-purple-700">
+  <div class="flex ml-6 space-x-24 text-purple-500">
          <button>
           Home
           </button>

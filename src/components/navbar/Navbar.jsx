@@ -7,13 +7,13 @@ const Navbar = () => {
 
 <div class="flex items-center">
 
-  <div class="flex w-3/5 items-center space-x-2">
+  <div class="flex w-3/5 items-center space-x-2 text-purple-700">
           <img src={logo} alt='logo' style={{ width: '70px', height: '70px', borderBottomRightRadius: '5px'}}/>
           <p>En Masse</p>
   </div>
 
   
-  <div class="flex ml-8 space-x-24">
+  <div class="flex ml-8 space-x-24 text-purple-700">
          <button>
           Home
           </button>

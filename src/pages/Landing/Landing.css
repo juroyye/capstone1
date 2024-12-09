@@ -1,5 +1,16 @@
 body{
-    padding: 0px;
-    margin: 0px;
     background-color: black;
 }
+
+
+.home {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Makes the home container fill the viewport height */
+  }
+  
+  .bodyDiv {
+    flex: 1; /* Makes BodyDiv take up all the space between Navbar and Footer */
+  }
+  
+  

@@ -1,0 +1,19 @@
+body{
+    height: 100vh;
+}
+
+.bodyDiv{
+    display: flex;
+  align-items: center; /* Vertically centers the content */
+  justify-content: center; /* Horizontally centers the content */
+  position: absolute; /*Ensures it fills the middle space */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+img{
+    border-radius: 10px;
+}

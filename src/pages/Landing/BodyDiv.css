@@ -24,4 +24,12 @@
   .second-div {
     text-align: center; 
   }
+
+  .second-div{
+    text-align: center;
+    flex: 1; 
+    max-width: 50%; 
+    border: 1px solid violet;
+    height: 600px;
+  }
   

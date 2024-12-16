@@ -9,7 +9,7 @@ const BodyDiv = () => {
         <img className="image" src={demoImg} alt="demo img" />
       </div>
       <div className="second-div">
-      
+          
       </div>
     </div>
   );

@@ -2,8 +2,6 @@ package com.stockproj.stockbackend.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,7 +10,7 @@ public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // Primary key
 
     @Column(nullable = false, unique = true)
     private String symbol;
@@ -25,5 +23,5 @@ public class Stock {
 
     @Column(nullable = false)
     private LocalDateTime lastUpdated;
-
 }
+

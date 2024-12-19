@@ -27,7 +27,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: violet;
   padding: 20px;
   border-radius: 10px;
   color: white;
@@ -47,8 +46,8 @@
   }
   
   .sign-up-button {
-    background-color: white;
-    color: violet;
+    background-color: rgb(124, 58, 237);
+    color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;

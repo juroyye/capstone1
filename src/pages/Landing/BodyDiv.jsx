@@ -21,7 +21,7 @@ const BodyDiv = () => {
       </div>
       <div className="description-div">
         <h2>Welcome to the leading stock information platform</h2>
-        <p>Brief description of the application and its features.</p>
+        <p>Manage your investments all in one place - track, strategize, dominate.</p>
         <button className="sign-up-button">Sign Up</button>
       </div>
     </div>

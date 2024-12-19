@@ -22,8 +22,8 @@ const BodyDiv = () => {
         </Carousel>
       </div>
       <div className="description-div">
-        <h2>Welcome to the leading stock information platform</h2>
-        <p>Manage your investments all in one place - track, strategize, dominate.</p>
+        <h2>Welcome to the leading <span className='highlight-landing-stockinfo'>stock information</span> platform</h2>
+        <p>Manage your investments all in one place - track, strategize,  <span className='highlight-landing-stockinfo'>dominate</span>.</p>
         <button className="sign-up-button">Sign Up</button>
       </div>
     </div>

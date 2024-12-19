@@ -2,6 +2,8 @@ import React from 'react';
 import './BodyDiv.css';
 import demoImg from '../../imports/images/demo-img-capstone.jpg';
 import { Carousel } from 'react-bootstrap';
+import demoImg2 from '../../imports/images/demoImg2.jpg'
+import demoImg3 from '../../imports/images/demoImg3.jpg'
 
 const BodyDiv = () => {
   return (
@@ -12,10 +14,10 @@ const BodyDiv = () => {
             <img className="d-block w-100" src={demoImg} alt="First slide" />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={demoImg} alt="Second slide" />
+            <img className="d-block w-100" src={demoImg2} alt="Second slide" />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={demoImg} alt="Third slide" />
+            <img className="d-block w-100" src={demoImg3} alt="Third slide" />
           </Carousel.Item>
         </Carousel>
       </div>

@@ -8,7 +8,7 @@ import demoImg3 from '../../imports/images/demoImg3.jpg'
 const BodyDiv = () => {
   return (
     <div className="bodyDiv">
-      <div className="image-div">
+      <div className="image-div slide-in-from-top">
         <Carousel>
           <Carousel.Item>
             <img className="d-block w-100" src={demoImg} alt="First slide" />
@@ -21,7 +21,7 @@ const BodyDiv = () => {
           </Carousel.Item>
         </Carousel>
       </div>
-      <div className="description-div">
+      <div className="description-div slide-in">
         <h2>Welcome to the leading <span className='highlight-landing-stockinfo'>stock information</span> platform</h2>
         <p>Manage your investments all in one place - track, strategize,  <span className='highlight-landing-stockinfo'>dominate</span>.</p>
         <button className="sign-up-button">Sign Up</button>

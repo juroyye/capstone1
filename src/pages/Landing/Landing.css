@@ -12,4 +12,23 @@
   color: rgb(124, 58, 237);
  }
   
+
+.slide-in {
+  opacity: 0; 
+  transform: translate(100%); 
+  animation: slideIn 1s ease-out forwards;
+}
+
+
+@keyframes slideIn {
+  0% {
+      opacity: 0; 
+      transform: translateX(100%); 
+  }
+  100% {
+      opacity: 1; 
+      transform: translateX(0); 
+  }
+}
+
   

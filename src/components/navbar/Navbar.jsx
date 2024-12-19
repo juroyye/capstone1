@@ -20,11 +20,8 @@ const Navbar = () => {
           About
           </button>
            <button>
-          News
+          Login
           </button>
-          <button>
-            Stocks
-            </button>
   </div>
 </div>
 

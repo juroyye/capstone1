@@ -6,6 +6,8 @@ import Stocks from "./pages/Stocks/Stocks";
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+// apikey: ctivuchr01qgfbsvlrggctivuchr01qgfbsvlrh0
+
 import { 
   BrowserRouter,
    Routes,

@@ -7,12 +7,12 @@ const Navbar = () => {
 
 <div class="">
 
-  <div class="position: absolute pt-2 pl-2">
+  <div class="position: absolute pt-4 pl-6">
           <img src={logo} alt='logo' style={{ width: '260px', height: '55px', borderBottomRightRadius: '5px'}}/>
   </div>
   
   
-  <div class="flex space-x-24 text-violet-600 font-bold float-end pt-2 pr-10">
+  <div class="flex space-x-24 text-violet-600 font-bold float-end pt-4 pr-10">
          <button>
           Home
           </button>

@@ -1,4 +1,4 @@
-
+import Sidebar from '../../components/sidebar/Sidebar';
 import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
 
@@ -8,6 +8,7 @@ const UserDash = () => {
     return (
         <div className="user-dash">
             <Navbar buttons={userDashButtons} />
+            <Sidebar/>
         </div>
     );
 };

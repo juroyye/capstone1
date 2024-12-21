@@ -1,14 +1,15 @@
-import './UserDash.css'
-import Navbar from '../../components/navbar/Navbar'
 
-import React from 'react'
+import React from 'react';
+import Navbar from '../../components/navbar/Navbar';
 
 const UserDash = () => {
-  return (
-    <div className='home'> 
-      <Navbar />
-    </div>
-  )
-}
+    const userDashButtons = ['Dashboard', 'Profile', 'Logout']; 
+
+    return (
+        <div className="user-dash">
+            <Navbar buttons={userDashButtons} />
+        </div>
+    );
+};
 
 export default UserDash;

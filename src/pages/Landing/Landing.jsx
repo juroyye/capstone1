@@ -1,13 +1,14 @@
 import React from 'react'
 import './Landing.css'
 import Navbar from '../../components/navbar/Navbar'
-import Footer from '../../components/footer/Footer'
 import BodyDiv from '../Landing/BodyDiv'
 
 const Landing = () => {
+  const landingButtons = ['Home', 'About', 'Login'];
+
   return (
     <div className='home'>
-      <Navbar/>
+      <Navbar buttons={landingButtons}/>
       <BodyDiv/>
     </div>
   )

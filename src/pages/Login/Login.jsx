@@ -1,14 +1,16 @@
-// import { Outlet } from 'react-router-dom'
+
 import '../Login/Login.css'
 
 import React from 'react'
 import Navbar from '../../components/navbar/Navbar'
 
 const Login = () => {
+  const loginButtons = ['Home', 'About', 'Login'];
+
   return (
     <div className='login-page'>
         
-        <Navbar/>
+        <Navbar buttons={loginButtons}/>
 
     <div className='loginBod'> 
       

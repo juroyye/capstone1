@@ -5,7 +5,7 @@ import logo from "../../imports/images/enmasse.png"
 const Navbar = () => {
   return (
 
-<div class="">
+<div>
 
   <div class="position: absolute pt-4 pl-6">
           <img src={logo} alt='logo' style={{ width: '260px', height: '55px', borderBottomRightRadius: '5px'}}/>

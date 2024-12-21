@@ -1,10 +1,13 @@
 import './UserDash.css'
+import Navbar from '../../components/navbar/Navbar'
 
 import React from 'react'
 
 const UserDash = () => {
   return (
-    <div>userDash</div>
+    <div className='home'> 
+      <Navbar />
+    </div>
   )
 }
 

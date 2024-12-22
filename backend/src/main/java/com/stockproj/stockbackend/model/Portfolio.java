@@ -11,10 +11,12 @@ import java.time.LocalDateTime;
 @Data
 public class Portfolio {
 
+    // New methods
+    // Returns the quantity for this Portfolio entry
     // Sets the quantity for this Portfolio entry
     // Retrieves the quantity for this Portfolio entry
+
     @Setter
-    @Getter
     @Column(nullable = false)
     private Integer quantity;
 
@@ -22,6 +24,8 @@ public class Portfolio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Primary key
 
+    // Returns the associated Stock entity
+   
     @ManyToOne
     @JoinColumn(name = "stock_id", nullable = false)
     private Stock stock; // Foreign key reference to Stock entity
@@ -34,9 +38,18 @@ public class Portfolio {
     }
 
     public void setName(String name) {
-        if (stock != null) {
-            stock.setName(name); // Sets the name in the associated Stock entity
+        if (stock == null) {
+            stock = new Stock(); // Ensure stock is initialized
         }
+        stock.setName(name); // Sets the name in the associated Stock entity
+    }
+    // New methods
+    public Integer getQuantity() {
+        return this.quantity; // Returns the quantity for this Portfolio entry
+    }
+
+    public Stock getStock() {
+        return this.stock; // Returns the associated Stock entity
     }
 
 }

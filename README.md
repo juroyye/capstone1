@@ -7,3 +7,5 @@ Do the routing
 Do the signup page
 Do the authentication
 
+Hardest part was accidentally clicking configure Lombok plugin
+Another Hardest Part was getting the front end api routing to match the backend GetMapping structure

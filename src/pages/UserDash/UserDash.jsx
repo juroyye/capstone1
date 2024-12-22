@@ -8,7 +8,7 @@ const UserDash = () => {
     return (
         <div className="user-dash">
             <Navbar buttons={userDashButtons} />
-            <Sidebar/>
+            <Sidebar />
         </div>
     );
 };

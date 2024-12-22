@@ -1,14 +1,17 @@
 package com.stockproj.stockbackend.model;
 
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import com.stockproj.stockbackend.model.Stock;
+
+
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
 public class Portfolio {
 
     // New methods
@@ -16,6 +19,9 @@ public class Portfolio {
     // Sets the quantity for this Portfolio entry
     // Retrieves the quantity for this Portfolio entry
 
+    // New methods
+    // Returns the quantity for this Portfolio entry
+    @Getter
     @Setter
     @Column(nullable = false)
     private Integer quantity;
@@ -25,7 +31,9 @@ public class Portfolio {
     private Long id; // Primary key
 
     // Returns the associated Stock entity
-   
+
+    // Returns the associated Stock entity
+
     @ManyToOne
     @JoinColumn(name = "stock_id", nullable = false)
     private Stock stock; // Foreign key reference to Stock entity
@@ -43,14 +51,14 @@ public class Portfolio {
         }
         stock.setName(name); // Sets the name in the associated Stock entity
     }
-    // New methods
-    public Integer getQuantity() {
-        return this.quantity; // Returns the quantity for this Portfolio entry
-    }
-
     public Stock getStock() {
-        return this.stock; // Returns the associated Stock entity
+        return stock;
     }
 
+
+    public void setStock(Stock stock) {
+
+        this.stock = stock;
+    }
 }
 

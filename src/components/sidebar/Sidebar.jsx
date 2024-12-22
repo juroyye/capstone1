@@ -28,29 +28,27 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <form onSubmit={handleSearch}>
+    <form onSubmit={handleSearch} style={{ width: "100%" }}>
         <input
-          type="text"
-          className="search-bar"
-          placeholder="Search for stocks..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)} 
+            type="text"
+            className="search-bar"
+            placeholder="Search for stocks..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
         />
-        <button type="submit" className="search-button">
-          Search
+        <button className="search-button" type="submit">
+            Search
         </button>
-      </form>
-
-      {error && <p className="error">{error}</p>} {}
-
-      <ul className="search-results">
-        {results.map((stock, index) => (
-          <li key={index}>
-            <strong>{stock.description}</strong> ({stock.symbol})
-          </li>
+    </form>
+    <div className="search-results">
+        {results.map((result, index) => (
+            <div key={index}>
+                <strong>{result.description}</strong> ({result.symbol})
+            </div>
         ))}
-      </ul>
     </div>
+</div>
+
   );
 };
 

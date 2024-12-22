@@ -38,7 +38,6 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #6a0dad;
     color: white;
     cursor: pointer;
     width: 100%; 
@@ -70,48 +69,3 @@
   }
   
   
-.overlay {
-  position: fixed; 
-  top: 0;
-  left: 0;
-  width: 100vw; 
-  height: 100vh; 
-  background: rgba(0, 0, 0, 0.7); /* Dimmed background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; 
-}
-
-.overlay-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for focus */
-  position: relative; /* For positioning the close button */
-}
-
-.close-overlay {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px;
-  border: none;
-  background-color: #d9534f;
-  color: white;
-  cursor: pointer;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  line-height: 0;
-}
-
-.close-overlay:hover {
-  background-color: #c9302c;
-}

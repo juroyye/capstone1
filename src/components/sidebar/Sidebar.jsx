@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Sidebar.css";
 
-const Sidebar = () => {
+
+const Sidebar = ({onStockClick}) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  const [selectedStock, setSelectedStock] = useState(null);
+ 
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -19,13 +20,6 @@ const Sidebar = () => {
     }
   };
 
-  const handleStockClick = (stock) => {
-    setSelectedStock(stock);
-  };
-
-  const handleCloseOverlay = () => {
-    setSelectedStock(null);
-  };
 
   return (
     <div className="sidebar">
@@ -47,25 +41,12 @@ const Sidebar = () => {
           <div
             key={stock.symbol}
             className="stock-item"
-            onClick={() => handleStockClick(stock)}
+            onClick={() => onStockClick(stock)}
           >
             {stock.description} ({stock.symbol})
           </div>
         ))}
       </div>
-
-      {/* my overlay */}
-      {selectedStock && (
-        <div className="overlay">
-          <div className="overlay-content">
-            <h2>{selectedStock.description} ({selectedStock.symbol})</h2>
-            <p>Charts and prices etc...</p>
-            <button onClick={handleCloseOverlay} className="close-overlay">
-              Close
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

@@ -14,13 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Portfolio {
 
-    // New methods
-    // Returns the quantity for this Portfolio entry
-    // Sets the quantity for this Portfolio entry
-    // Retrieves the quantity for this Portfolio entry
 
-    // New methods
-    // Returns the quantity for this Portfolio entry
     @Getter
     @Setter
     @Column(nullable = false)
@@ -30,26 +24,24 @@ public class Portfolio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Primary key
 
-    // Returns the associated Stock entity
 
-    // Returns the associated Stock entity
 
     @ManyToOne
     @JoinColumn(name = "stock_id", nullable = false)
-    private Stock stock; // Foreign key reference to Stock entity
+    private Stock stock;
 
     @Column(nullable = false)
     private LocalDateTime dateAdded;
 
     public String getName() {
-        return stock != null ? stock.getName() : null; // Retrieves the name from the associated Stock entity
+        return stock != null ? stock.getName() : null;
     }
 
     public void setName(String name) {
         if (stock == null) {
-            stock = new Stock(); // Ensure stock is initialized
+            stock = new Stock();
         }
-        stock.setName(name); // Sets the name in the associated Stock entity
+        stock.setName(name);
     }
     public Stock getStock() {
         return stock;

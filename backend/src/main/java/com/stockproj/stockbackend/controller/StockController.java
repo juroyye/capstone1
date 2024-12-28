@@ -1,79 +1,65 @@
-//package com.stockproj.stockbackend.controller;
-//
-//import com.stockproj.stockbackend.model.Stock;
-//import com.stockproj.stockbackend.repository.StockRepository;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.*;
-//
-//
-//import java.util.List;
-//
-//@RestController
-//@RequestMapping("/api/stocks")
-//public class StockController {
-//
-//
-//    @Autowired
-//    private StockRepository stockRepository;
-//
-//    // GET: Retrieve all stocks
-//    @GetMapping
-//    public List<Stock> getAllStocks() {
-//        return stockRepository.findAll();
-//    }
-//
-//    // POST: Add a new stock
-//    @PostMapping
-//    public Stock addStock(@RequestBody Stock stock) {
-//        return stockRepository.save(stock);
-//    }
-//
-//    // DELETE: Delete a stock by ID
-//    @DeleteMapping("/{id}")
-//    public String deleteStock(@PathVariable Long id) {
-//        stockRepository.deleteById(id);
-//        return "Stock deleted successfully!";
-//    }
-//}
 
 package com.stockproj.stockbackend.controller;
 
 import com.stockproj.stockbackend.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/stocks") // Base path for the API
+@RequestMapping("/stocks")
 public class StockController {
 
     private final StockService stockService;
+    private final RestTemplate restTemplate;
 
-    // Constructor injection of StockService
+    @Value("${finnhub.api.key}")
+    private String finnhubApiKey;
+
+
     @Autowired
-    public StockController(StockService stockService) {
+    public StockController(StockService stockService, RestTemplate restTemplate) {
         this.stockService = stockService;
+        this.restTemplate = restTemplate;
     }
 
-    /**
-     * Endpoint to search for stock information based on user query.
-     *
-     * @param query The stock symbol or search term provided by the user.
-     * @return A JSON response with stock data from the StockService.
-     */
+
     @GetMapping("/search")
     public ResponseEntity<String> searchStock(@RequestParam String query) {
         try {
-            // Call the StockService to fetch stock data
+
             String result = stockService.searchStock(query);
-            return ResponseEntity.ok(result); // Return the result as a 200 OK response
+            return ResponseEntity.ok(result);
         } catch (Exception e) {
-            // Return a 500 Internal Server Error with the exception message
+
             return ResponseEntity.status(500).body("Error fetching stock data: " + e.getMessage());
         }
     }
+
+
+    @GetMapping("/data")
+    public ResponseEntity<?> getStockData(@RequestParam String symbol) {
+        try {
+
+            String url = String.format("https://finnhub.io/api/v1/quote?symbol=%s&token=%s", symbol, finnhubApiKey);
+
+
+            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+
+            return ResponseEntity.ok(response.getBody());
+        } catch (Exception e) {
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error fetching stock data: " + e.getMessage());
+        }
+    }
 }
+
 

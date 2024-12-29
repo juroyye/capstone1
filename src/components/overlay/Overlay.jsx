@@ -14,8 +14,6 @@ import {
   Legend,
 } from "chart.js";
 
-
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -26,7 +24,7 @@ ChartJS.register(
   Legend
 );
 
-const Overlay = ({ stock, onClose }) => {
+const Overlay = ({ stock, onClose, onAddStock }) => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
@@ -34,6 +32,19 @@ const Overlay = ({ stock, onClose }) => {
       fetchChartData(stock.symbol);
     }
   }, [stock]);
+
+  const handleAddStock = () => {
+    
+    if (chartData) {
+      const stockData = {
+        ...stock,
+        chartData, 
+      };
+      onAddStock(stockData);
+    }
+    onClose(); 
+  };
+  
 
   const fetchChartData = async (symbol) => {
     try {
@@ -66,7 +77,9 @@ const Overlay = ({ stock, onClose }) => {
         <h2>
           {stock.description} ({stock.symbol})
         </h2>
-        {chartData ? (
+
+        <div className="chart-container">  
+             {chartData   ? (
           <Line
             data={chartData}
             options={{
@@ -77,6 +90,12 @@ const Overlay = ({ stock, onClose }) => {
         ) : (
           <p>Loading chart...</p>
         )}
+        </div>
+   
+        <button onClick= {handleAddStock} className="add-stock-button">
+  Add Stock
+</button>
+
         <button onClick={onClose} className="close-overlay">
           X
         </button>
@@ -86,3 +105,4 @@ const Overlay = ({ stock, onClose }) => {
 };
 
 export default Overlay;
+

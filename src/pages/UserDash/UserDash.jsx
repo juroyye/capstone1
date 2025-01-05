@@ -27,7 +27,7 @@ ChartJS.register(
 
 const UserDash = () => {
     const userDashButtons = [ 
-      { label: "Logout", route: "/login" },]; 
+      { label: "Logout", route: "/" },]; 
     const [isOverlayVisible, setOverlayVisible] = useState(false); 
     const [selectedStock, setSelectedStock] = useState(null); 
     const [addedStocks, setAddedStocks] = useState([]);
@@ -46,6 +46,8 @@ const UserDash = () => {
         setSelectedStock(null); 
         setOverlayVisible(false); 
       };
+
+      
 
     return (
         <div className="user-dash">

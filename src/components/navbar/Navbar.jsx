@@ -5,7 +5,7 @@ import logo from '../../imports/images/enmasse.png'
 
 const Navbar = ({ buttons }) => {
   return (
-    // insert start of div
+   
    <div>
     <div className="position absolute pt-4 pl-6">
     <img
@@ -19,7 +19,7 @@ const Navbar = ({ buttons }) => {
       <ul className="flex space-x-24 text-violet-600 font-bold float-end pt-4 pr-10">
         {buttons.map((button, index) => (
           <li key={index} className="navbar-button">
-            <Link to={button.route} className="navbar-link">
+            <Link to={button.route} className="navbar-link btns">
               {button.label}
             </Link>
           </li>
@@ -28,7 +28,7 @@ const Navbar = ({ buttons }) => {
     </nav>
     </div>
     </div>
-    // insert end of div
+    
   );
 };
 

@@ -4,8 +4,16 @@ import demoImg from '../../imports/images/demo-img-capstone.jpg';
 import { Carousel } from 'react-bootstrap';
 import demoImg2 from '../../imports/images/demoImg2.jpg'
 import demoImg3 from '../../imports/images/demoImg3.jpg'
+import { useNavigate } from "react-router-dom";
 
 const BodyDiv = () => {
+
+  const navigate = useNavigate();
+
+  const handleSignUpClick = () => {
+    navigate("/signup");
+  };
+
   return (
     <div className="bodyDiv">
       <div className="image-div slide-in-from-top">
@@ -24,7 +32,7 @@ const BodyDiv = () => {
       <div className="description-div slide-in">
         <h2>Welcome to the leading <span className='highlight-landing-stockinfo'>stock information</span> platform</h2>
         <p>Manage your investments all in one place - track, strategize,  <span className='highlight-landing-stockinfo'>dominate</span>.</p>
-        <button className="sign-up-button">Sign Up</button>
+        <button onClick={handleSignUpClick} className="sign-up-button">Sign Up</button>
       </div>
     </div>
   );

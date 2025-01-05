@@ -1,7 +1,7 @@
 import React from 'react'
 import './Landing.css'
 import Navbar from '../../components/navbar/Navbar'
-import BodyDiv from '../Landing/BodyDiv'
+import BodyDiv from '../Landing/BodyDiv';
 
 const Landing = () => {
   const landingButtons = [ 

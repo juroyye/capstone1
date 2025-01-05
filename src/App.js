@@ -3,8 +3,9 @@ import Login from "./pages/Login/Login";
 import UserDash from "./pages/UserDash/UserDash";
 import News from "./pages/News/News";
 import Stocks from "./pages/Stocks/Stocks";
+import SignUp from "./pages/Sign Up/SignUp";
 import React from "react";
-import ReactDOM from "react-dom/client";
+
 
 // apikey: ctivuchr01qgfbsvlrggctivuchr01qgfbsvlrh0
 
@@ -13,6 +14,7 @@ import {
    Routes,
    Route,
    } from "react-router-dom";
+import About from "./pages/About/About";
 
    
 
@@ -26,6 +28,8 @@ function App() {
         <Route path="/userdash" element={<UserDash />} />
         <Route path="/news" element={<News />} />
         <Route path="/stocks" element={<Stocks />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   );

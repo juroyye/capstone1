@@ -54,7 +54,6 @@ const UserDash = () => {
         <Overlay stock={selectedStock} onClose={handleCloseOverlay} onAddStock={handleAddStock}/>
       )}
         <div className="added-stocks">
-        <h3>My Stocks</h3>
         {addedStocks.map((stock, index) => (
           <div key={index} className="stock-item">
             <h4>{stock.description} ({stock.symbol})</h4>

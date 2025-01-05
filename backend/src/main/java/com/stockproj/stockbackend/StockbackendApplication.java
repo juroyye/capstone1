@@ -10,7 +10,4 @@ public class StockbackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StockbackendApplication.class, args);
 	}
-
-
-
 }

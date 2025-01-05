@@ -15,8 +15,8 @@ public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private Long id; // Primary key
 
     @NotBlank(message = "Symbol cannot be blank")
     @Column(nullable = false, unique = true)
@@ -32,5 +32,20 @@ public class Stock {
 
     @Column(nullable = false)
     private LocalDateTime lastUpdated = LocalDateTime.now();
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
 

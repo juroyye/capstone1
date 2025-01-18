@@ -57,6 +57,9 @@ const UserDash = () => {
             {isOverlayVisible && (
         <Overlay stock={selectedStock} onClose={handleCloseOverlay} onAddStock={handleAddStock}/>
       )}
+
+      <div className='content-container'>
+
         <div className="stocks-grid">
         {addedStocks.map((stock, index) => (
           <div key={index} className="stock-box">
@@ -74,8 +77,9 @@ const UserDash = () => {
             />
           </div>
         ))}
-      </div>
+          </div>
         </div>
+      </div>
     );
 };
 

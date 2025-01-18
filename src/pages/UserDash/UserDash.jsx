@@ -1,6 +1,7 @@
 import Sidebar from '../../components/sidebar/Sidebar';
 import React, { useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
+import '../UserDash/UserDash.css'
 import Overlay from '../../components/overlay/Overlay';
 import { Line } from "react-chartjs-2";
 import {
@@ -56,15 +57,19 @@ const UserDash = () => {
             {isOverlayVisible && (
         <Overlay stock={selectedStock} onClose={handleCloseOverlay} onAddStock={handleAddStock}/>
       )}
-        <div className="added-stocks">
+        <div className="stocks-grid">
         {addedStocks.map((stock, index) => (
-          <div key={index} className="stock-item">
+          <div key={index} className="stock-box">
             <h4>{stock.description} ({stock.symbol})</h4>
             <Line
               data={stock.chartData}
               options={{
                 responsive: true,
                 maintainAspectRatio: true,
+                scales: {
+                  x: { grid: { display: false } },
+                  y: { grid: { display: true } },
+              },
               }}
             />
           </div>

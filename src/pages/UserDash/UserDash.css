@@ -1,0 +1,33 @@
+.stocks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px; 
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.stock-box {
+    background-color: #282c34;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.stock-box h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.stock-box canvas {
+    max-height: 200px; 
+    max-width: 100%;
+}

@@ -68,10 +68,13 @@ const UserDash = () => {
               data={stock.chartData}
               options={{
                 responsive: true,
-                maintainAspectRatio: true,
+                maintainAspectRatio: false,
                 scales: {
                   x: { grid: { display: false } },
-                  y: { grid: { display: true } },
+                  y: { grid: { display: true },
+                  min: Math.max(0, Math.min(...stock.chartData.datasets[0].data) - 1), // Ensure min doesn't go below 0
+                  max: Math.max(...stock.chartData.datasets[0].data) + 1, // Add 100 to the maximum
+                },
               },
               }}
             />

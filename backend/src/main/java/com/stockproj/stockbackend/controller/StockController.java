@@ -1,6 +1,8 @@
 
 package com.stockproj.stockbackend.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stockproj.stockbackend.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/stocks")
@@ -33,8 +41,8 @@ public class StockController {
     @GetMapping("/search")
     public ResponseEntity<String> searchStock(@RequestParam String query) {
         try {
-
-            String result = stockService.searchStock(query);
+            String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
+            String result = stockService.searchStock(encodedQuery);
             return ResponseEntity.ok(result);
         } catch (Exception e) {
 
@@ -43,14 +51,16 @@ public class StockController {
     }
 
 
+
     @GetMapping("/data")
     public ResponseEntity<?> getStockData(@RequestParam String symbol) {
         try {
-
-            String url = String.format("https://finnhub.io/api/v1/quote?symbol=%s&token=%s", symbol, finnhubApiKey);
-
+            String encodedSymbol = URLEncoder.encode(symbol, StandardCharsets.UTF_8);
+            String url = String.format("https://finnhub.io/api/v1/quote?symbol=%s&token=%s", encodedSymbol, finnhubApiKey);
 
             ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+            System.out.println("Received symbol: " + url);
 
 
             return ResponseEntity.ok(response.getBody());

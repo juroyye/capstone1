@@ -48,9 +48,12 @@ const Overlay = ({ stock, onClose, onAddStock }) => {
 
   const fetchChartData = async (symbol) => {
     try {
+      console.log(symbol)
+      const encodedSymbol = encodeURIComponent(symbol); 
       const response = await axios.get(
-       `http://localhost:8080/stocks/data?symbol=${symbol}`
+       `http://localhost:8080/stocks/data?symbol=${encodedSymbol}`
       );
+      
       const { c, h, l, o } = response.data; 
       setChartData({
         labels: ["Open", "High", "Low", "Current"],

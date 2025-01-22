@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 
 @Service
 public class StockService {
@@ -21,20 +24,15 @@ public class StockService {
         this.restTemplate = restTemplate;
     }
 
-    /**
-     * Fetches stock information based on the user's query.
-     *
-     * @param query The stock symbol or search term.
-     * @return A JSON response containing stock data from Finnhub API.
-     */
+
     public String searchStock(String query) {
         try {
-            // Build the dynamic URL with query parameters
-            String url = String.format("%s/search?q=%s&token=%s", finnhubBaseUrl, query, finnhubApiKey);
-            // Make an API call and return the result as a String
+            String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
+            String url = String.format("%s/search?q=%s&token=%s", finnhubBaseUrl, encodedQuery, finnhubApiKey);
+
             return restTemplate.getForObject(url, String.class);
         } catch (Exception e) {
-            // Handle exceptions and provide a meaningful message
+
             throw new RuntimeException("Failed to fetch stock data: " + e.getMessage());
         }
     }

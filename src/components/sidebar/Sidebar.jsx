@@ -14,7 +14,6 @@ const Sidebar = ({onStockClick}) => {
       const response = await axios.get(
         `http://localhost:8080/stocks/search?query=${query}`
       );
-      // setResults(response.data.result);
       const filteredResults = response.data.result.filter(
         (stock) => !stock.symbol.includes(".")
       );

@@ -60,8 +60,6 @@ public class StockController {
 
             ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
-            System.out.println("Received symbol: " + url);
-
 
             return ResponseEntity.ok(response.getBody());
         } catch (Exception e) {

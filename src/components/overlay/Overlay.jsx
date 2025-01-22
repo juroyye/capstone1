@@ -96,12 +96,10 @@ const Overlay = ({ stock, onClose, onAddStock }) => {
         </div>
    
         <button onClick= {handleAddStock} className="add-stock-button">
-  Add Stock
-</button>
+            Add Stock
+            </button>
 
-        <button onClick={onClose} className="close-overlay">
-          X
-        </button>
+           <button onClick={onClose} className="close-overlay">X</button>
       </div>
     </div>
   );

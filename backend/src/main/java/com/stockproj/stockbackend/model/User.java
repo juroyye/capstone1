@@ -3,6 +3,9 @@ package com.stockproj.stockbackend.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 public class User {
@@ -19,6 +22,9 @@ private Long id;
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Portfolio> portfolios = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -50,6 +56,20 @@ private Long id;
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Portfolio> getPortfolios() {
+        return portfolios;
+    }
+
+    public void addPortfolio(Portfolio portfolio) {
+        portfolios.add(portfolio);
+        portfolio.setUser(this);
+    }
+
+    public void removePortfolio(Portfolio portfolio) {
+        portfolios.remove(portfolio);
+        portfolio.setUser(null);
     }
 
 }

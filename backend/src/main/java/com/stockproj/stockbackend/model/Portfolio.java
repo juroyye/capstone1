@@ -9,19 +9,23 @@ public class Portfolio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Primary key
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "stock_id", nullable = true)
+    private Stock stock;
 
     @Column(nullable = false)
     private Integer quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "stock_id", nullable = false)
-    private Stock stock;
-
     @Column(nullable = false)
     private LocalDateTime dateAdded;
 
-    // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -54,7 +58,7 @@ public class Portfolio {
         this.dateAdded = dateAdded;
     }
 
-    // Convenience Methods
+
     public String getName() {
         return stock != null ? stock.getName() : null;
     }
@@ -65,5 +69,17 @@ public class Portfolio {
         }
         stock.setName(name);
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        if (user != null && !user.getPortfolios().contains(this)) {
+            user.getPortfolios().add(this);
+        }
+    }
+
 }
 

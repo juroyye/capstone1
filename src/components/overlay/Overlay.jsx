@@ -33,8 +33,20 @@ const Overlay = ({ stock, onClose, onAddStock }) => {
     }
   }, [stock]);
 
-  const handleAddStock = () => {
+  const handleAddStock = async (stockId) => {
     
+    const userId = localStorage.getItem("userId");
+    try {
+      const response = await fetch(`http://localhost:8080/portfolio/addStock?userId=${userId}&stockId=${stockId}`, {
+          method: "POST",
+      });
+      const result = await response.json();
+      alert(result.message);
+  } catch (error) {
+      console.error("Error adding stock:", error);
+  }
+
+
     if (chartData) {
       const stockData = {
         ...stock,

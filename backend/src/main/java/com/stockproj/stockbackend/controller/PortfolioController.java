@@ -56,6 +56,7 @@ public class PortfolioController {
 
     @PostMapping("/addStock")
     public ResponseEntity<String> addStockToPortfolio(@RequestParam Long userId, @RequestParam String stockSymbol) {
+
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isEmpty()) {
             return ResponseEntity.badRequest().body("User not found");
@@ -63,7 +64,13 @@ public class PortfolioController {
 
         Optional<Stock> stockOptional = stockRepository.findBySymbol(stockSymbol);
         if (stockOptional.isEmpty()) {
-            return ResponseEntity.badRequest().body("Stock not found");
+            Stock newStock = new Stock();
+            newStock.setSymbol(stockSymbol);
+            newStock.setName(null); // Name can be null
+            newStock.setPrice(0.0); // Example default price
+            newStock.setLastUpdated(LocalDateTime.now());
+            stockRepository.save(newStock);
+            stockOptional = Optional.of(newStock);
         }
 
         Portfolio portfolio = new Portfolio();

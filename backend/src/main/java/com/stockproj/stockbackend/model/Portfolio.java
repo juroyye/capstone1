@@ -20,7 +20,7 @@ public class Portfolio {
     private Stock stock;
 
     @Column(nullable = false)
-    private Integer quantity;
+    private int quantity;
 
     @Column(nullable = false)
     private LocalDateTime dateAdded;

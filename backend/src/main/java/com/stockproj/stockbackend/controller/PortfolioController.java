@@ -1,15 +1,17 @@
 package com.stockproj.stockbackend.controller;
 
 import com.stockproj.stockbackend.model.Portfolio;
+import com.stockproj.stockbackend.model.Stock;
 import com.stockproj.stockbackend.model.User;
 import com.stockproj.stockbackend.repository.PortfolioRepository;
+import com.stockproj.stockbackend.repository.StockRepository;
 import com.stockproj.stockbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 
-
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +24,10 @@ public class PortfolioController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private StockRepository stockRepository;
+
 
 
     @GetMapping
@@ -46,6 +52,28 @@ public class PortfolioController {
 
         List<Portfolio> portfolios = portfolioRepository.findByUserId(userId);
         return ResponseEntity.ok(portfolios);
+    }
+
+    @PostMapping("/addStock")
+    public ResponseEntity<String> addStockToPortfolio(@RequestParam Long userId, @RequestParam String stockSymbol) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isEmpty()) {
+            return ResponseEntity.badRequest().body("User not found");
+        }
+
+        Optional<Stock> stockOptional = stockRepository.findBySymbol(stockSymbol);
+        if (stockOptional.isEmpty()) {
+            return ResponseEntity.badRequest().body("Stock not found");
+        }
+
+        Portfolio portfolio = new Portfolio();
+        portfolio.setUser(userOptional.get());
+        portfolio.setStock(stockOptional.get());
+        portfolio.setQuantity(1);
+        portfolio.setDateAdded(LocalDateTime.now());
+        portfolioRepository.save(portfolio);
+
+        return ResponseEntity.ok("Stock added successfully");
     }
     
 

@@ -1,5 +1,5 @@
 import Sidebar from '../../components/sidebar/Sidebar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import '../UserDash/UserDash.css'
 import Overlay from '../../components/overlay/Overlay';
@@ -34,6 +34,13 @@ const UserDash = () => {
     const [isOverlayVisible, setOverlayVisible] = useState(false); 
     const [selectedStock, setSelectedStock] = useState(null); 
     const [addedStocks, setAddedStocks] = useState([]);
+
+    useEffect(() => {
+      const savedStocks = localStorage.getItem("addedStocks");
+      if (savedStocks) {
+          setAddedStocks(JSON.parse(savedStocks));
+      }
+  }, []);
   
     const handleStockClick = (stock) => {
         setSelectedStock(stock); 
@@ -41,12 +48,10 @@ const UserDash = () => {
       };
 
       const handleAddStock = async (stockData) => {
-        setAddedStocks((prev) => [...prev, stockData]); 
+        // setAddedStocks((prev) => [...prev, stockData]); 
         setOverlayVisible(false); 
 
         const userId = localStorage.getItem("userId");
-        console.log(userId)
-  
        
         if (!userId) {
           alert("User not logged in. Please log in to continue.");
@@ -72,11 +77,19 @@ const UserDash = () => {
             },
           });
       
-          // Handle response
           if (response.ok) {
             const result = await response.json();
             alert("Stock added successfully!");
             console.log("Response:", result);
+
+
+            setAddedStocks((prev) => {
+              const updatedStocks = [...prev, stockData];
+              localStorage.setItem("addedStocks", JSON.stringify(updatedStocks));
+              return updatedStocks;
+          });
+
+
           } else {
             const errorResult = await response.json();
             alert(`Failed to add stock: ${errorResult.message}`);
@@ -95,7 +108,12 @@ const UserDash = () => {
       };
 
       const handleRemoveStock = (index) => {
-        setAddedStocks((prev) => prev.filter((_, i) => i !== index)); 
+        // setAddedStocks((prev) => prev.filter((_, i) => i !== index)); 
+        setAddedStocks((prev) => {
+          const updatedStocks = prev.filter((_, i) => i !== index);
+          localStorage.setItem("addedStocks", JSON.stringify(updatedStocks));
+          return updatedStocks;
+      });
     };
 
       

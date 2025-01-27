@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -55,11 +57,13 @@ public class PortfolioController {
     }
 
     @PostMapping("/addStock")
-    public ResponseEntity<String> addStockToPortfolio(@RequestParam Long userId, @RequestParam String stockSymbol) {
+    public ResponseEntity<Map<String, Object>> addStockToPortfolio(@RequestParam Long userId, @RequestParam String stockSymbol) {
 
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isEmpty()) {
-            return ResponseEntity.badRequest().body("User not found");
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", "User not found");
+            return ResponseEntity.badRequest().body(errorResponse);
         }
 
         Optional<Stock> stockOptional = stockRepository.findBySymbol(stockSymbol);
@@ -80,7 +84,11 @@ public class PortfolioController {
         portfolio.setDateAdded(LocalDateTime.now());
         portfolioRepository.save(portfolio);
 
-        return ResponseEntity.ok("Stock added successfully");
+        Map<String, Object> successResponse = new HashMap<>();
+        successResponse.put("message", "Stock added successfully");
+        successResponse.put("userId", userId);
+        successResponse.put("stockSymbol", stockSymbol);
+        return ResponseEntity.ok(successResponse);
     }
     
 

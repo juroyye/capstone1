@@ -30,6 +30,8 @@ const handleSubmit = async (e) => {
         });
 
         if (response.ok) {
+          const data = await response.json(); 
+          localStorage.setItem("userId", data.userId);
             alert("Login successful");
             navigate("/userdash");
         } else {

@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -80,28 +81,27 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<Map<String, Object>> loginUser(@RequestBody LoginRequest loginRequest) {
         Optional<User> userOptional = userRepository.findByUsername(loginRequest.getUsername());
-        if (userOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+        if (userOptional.isEmpty() ||
+                !userOptional.get().getPassword().equals(loginRequest.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Collections.singletonMap("error", "Invalid credentials"));
         }
 
         User user = userOptional.get();
 
-        if (!user.getPassword().equals(loginRequest.getPassword())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-        }
-
-//        User existingUser = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
-//        if (existingUser != null) {
-//            Map<String, Object> response = new HashMap<>();
-//            response.put("message", "Login successful");
-//            response.put("userId", existingUser.getId());
-//            return ResponseEntity.ok(response);
+//        if (!user.getPassword().equals(loginRequest.getPassword())) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
 //        }
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 
-        return ResponseEntity.ok("Login successful");
+
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("userId", user.getId());
+        response.put("message", "Login successful");
+        return ResponseEntity.ok(response);
+
     }
 
 }

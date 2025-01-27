@@ -48,6 +48,10 @@ const UserDash = () => {
         setOverlayVisible(false); 
       };
 
+      const handleRemoveStock = (index) => {
+        setAddedStocks((prev) => prev.filter((_, i) => i !== index)); 
+    };
+
       
 
     return (
@@ -64,6 +68,12 @@ const UserDash = () => {
         {addedStocks.map((stock, index) => (
           <div key={index} className="stock-box">
             <h4>{stock.description} ({stock.symbol})</h4>
+            <button 
+              className="remove-stock-button" 
+              onClick={() => handleRemoveStock(index)}
+            >
+             Remove 
+             </button>
             <Line
               data={stock.chartData}
               options={{
@@ -72,8 +82,8 @@ const UserDash = () => {
                 scales: {
                   x: { grid: { display: false } },
                   y: { grid: { display: true },
-                  min: Math.max(0, Math.min(...stock.chartData.datasets[0].data) - 1), // Ensure min doesn't go below 0
-                  max: Math.max(...stock.chartData.datasets[0].data) + 1, // Add 100 to the maximum
+                  min: Math.max(0, Math.min(...stock.chartData.datasets[0].data) - 1), 
+                  max: Math.max(...stock.chartData.datasets[0].data) + 1, 
                 },
               },
               }}

@@ -108,9 +108,6 @@ const UserDash = () => {
           });
       
           if (response.ok) {
-            // const result = await response.json();
-            // alert("Stock added successfully!");
-            // console.log("Response:", result);
             setAddedStocks((prev) => {
               const updatedStocks = prev.some((s) => s.symbol === stockData.symbol)
                   ? prev

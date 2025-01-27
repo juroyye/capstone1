@@ -41,7 +41,7 @@ const Overlay = ({ stock, onClose, onAddStock }) => {
           method: "POST",
       });
       const result = await response.json();
-      alert(result.message);
+      // alert(result.message);
   } catch (error) {
       console.error("Error adding stock:", error);
   }

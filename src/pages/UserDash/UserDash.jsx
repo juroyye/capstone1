@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import '../UserDash/UserDash.css'
 import Overlay from '../../components/overlay/Overlay';
+import trashPic from '../../imports/images/purpTrash.png';
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -24,6 +25,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
 
 
 const UserDash = () => {
@@ -72,7 +74,7 @@ const UserDash = () => {
               className="remove-stock-button" 
               onClick={() => handleRemoveStock(index)}
             >
-             Remove 
+            <img src={trashPic} alt='remove icon' />
              </button>
             <Line
               data={stock.chartData}

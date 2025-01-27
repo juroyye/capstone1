@@ -16,7 +16,7 @@
     padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    height: 250px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -37,3 +37,14 @@
 .content-container { 
     margin-left: 300px;
 }
+
+.remove-stock-button {
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+/* .remove-stock-button:hover {
+    background-color: purple;
+} */

@@ -36,10 +36,40 @@ const UserDash = () => {
     const [addedStocks, setAddedStocks] = useState([]);
 
     useEffect(() => {
-      const savedStocks = localStorage.getItem("addedStocks");
-      if (savedStocks) {
-          setAddedStocks(JSON.parse(savedStocks));
-      }
+      const userId = localStorage.getItem("userId");
+      if (userId) {
+          const localStorageKey = `stocks_${userId}`;
+          const savedStocks = localStorage.getItem(localStorageKey);
+          
+          if (savedStocks) {
+            try {
+                const parsedStocks = JSON.parse(savedStocks);
+                if (Array.isArray(parsedStocks)) {
+                    setAddedStocks(parsedStocks);
+                } else {
+                    console.error("Saved stocks are not an array. Resetting data.");
+                    localStorage.removeItem(localStorageKey);
+                    setAddedStocks([]);
+                }
+            } catch (error) {
+                console.error("Error parsing saved stocks:", error);
+                setAddedStocks([]);
+            }
+        } else {
+          fetch(`http://localhost:8080/api/portfolios/user/${userId}`)
+          .then((response) => response.json())
+          .then((data) => {
+              if (Array.isArray(data)) {
+                  setAddedStocks(data);
+                  localStorage.setItem(localStorageKey, JSON.stringify(data));
+              } else {
+                  console.error('API response is not an array:', data);
+                  setAddedStocks([]);
+              }
+          })
+          .catch((error) => console.error('Error fetching stocks:', error));
+  }
+}
   }, []);
   
     const handleStockClick = (stock) => {
@@ -48,7 +78,7 @@ const UserDash = () => {
       };
 
       const handleAddStock = async (stockData) => {
-        // setAddedStocks((prev) => [...prev, stockData]); 
+       
         setOverlayVisible(false); 
 
         const userId = localStorage.getItem("userId");
@@ -78,18 +108,17 @@ const UserDash = () => {
           });
       
           if (response.ok) {
-            const result = await response.json();
-            alert("Stock added successfully!");
-            console.log("Response:", result);
-
-
+            // const result = await response.json();
+            // alert("Stock added successfully!");
+            // console.log("Response:", result);
             setAddedStocks((prev) => {
-              const updatedStocks = [...prev, stockData];
-              localStorage.setItem("addedStocks", JSON.stringify(updatedStocks));
+              const updatedStocks = prev.some((s) => s.symbol === stockData.symbol)
+                  ? prev
+                  : [...prev, stockData];
+              const localStorageKey = `stocks_${userId}`;
+              localStorage.setItem(localStorageKey, JSON.stringify(updatedStocks));
               return updatedStocks;
           });
-
-
           } else {
             const errorResult = await response.json();
             alert(`Failed to add stock: ${errorResult.message}`);
@@ -108,12 +137,13 @@ const UserDash = () => {
       };
 
       const handleRemoveStock = (index) => {
-        // setAddedStocks((prev) => prev.filter((_, i) => i !== index)); 
+        const userId = localStorage.getItem("userId");
+        const localStorageKey = `stocks_${userId}`;
         setAddedStocks((prev) => {
-          const updatedStocks = prev.filter((_, i) => i !== index);
-          localStorage.setItem("addedStocks", JSON.stringify(updatedStocks));
-          return updatedStocks;
-      });
+            const updatedStocks = prev.filter((_, i) => i !== index);
+            localStorage.setItem(localStorageKey, JSON.stringify(updatedStocks));
+            return updatedStocks;
+        });
     };
 
       
@@ -127,7 +157,6 @@ const UserDash = () => {
       )}
 
       <div className='content-container'>
-
         <div className="stocks-grid">
         {addedStocks.map((stock, index) => (
           <div key={index} className="stock-box">

@@ -40,9 +40,53 @@ const UserDash = () => {
         setOverlayVisible(true); 
       };
 
-      const handleAddStock = (stockData) => {
+      const handleAddStock = async (stockData) => {
         setAddedStocks((prev) => [...prev, stockData]); 
         setOverlayVisible(false); 
+
+        const userId = localStorage.getItem("userId");
+        console.log(userId)
+  
+       
+        if (!userId) {
+          alert("User not logged in. Please log in to continue.");
+          return;
+        }
+        if (!stockData) {
+          alert("No stock selected.");
+          return;
+        }
+
+        const stockSymbol = stockData.symbol;
+        
+
+        try {
+          
+          const url = `http://localhost:8080/api/portfolios/addStock?userId=${userId}&stockSymbol=${stockSymbol}`;
+      
+          
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+      
+          // Handle response
+          if (response.ok) {
+            const result = await response.json();
+            alert("Stock added successfully!");
+            console.log("Response:", result);
+          } else {
+            const errorResult = await response.json();
+            alert(`Failed to add stock: ${errorResult.message}`);
+            console.error("Error:", errorResult);
+          }
+        } catch (error) {
+          console.error("Error adding stock:", error);
+          alert("An error occurred while adding the stock.");
+        }
+
       };
     
       const handleCloseOverlay = () => {

@@ -18,19 +18,19 @@ public class Stock {
     private Long id;
 
 
-    @NotBlank(message = "Symbol cannot be blank")
-    @Column(nullable = false, unique = true)
+
+    @Column(nullable = true, unique = true)
     private String symbol;
 
-    @NotBlank(message = "Name cannot be blank")
-    @Column(nullable = false)
+
+    @Column(nullable = true)
     private String name;
 
-    @NotNull(message = "Price cannot be null")
-    @Column(nullable = false)
+
+    @Column(nullable = true)
     private Double price;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDateTime lastUpdated = LocalDateTime.now();
     public Long getId() {
         return id;
@@ -45,9 +45,9 @@ public class Stock {
     }
 
     public void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Name cannot be null or blank");
-        }
+//        if (name == null || name.trim().isEmpty()) {
+//            throw new IllegalArgumentException("Name cannot be null or blank");
+//        }
         this.name = name;
     }
 

@@ -44,4 +44,35 @@
     height: 30px;
 }
 
-
+.button-group {
+    position: absolute; 
+    top: 10%;
+    right: 22px;
+    display: flex;
+    flex-direction: column; 
+    gap: 30px; 
+  }
+  
+  .news-button,
+  .logout-button {
+    display: flex;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    color: rgb(124, 58, 237);
+    cursor: pointer;
+    width: 100%; 
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .news-button:hover,
+  .logout-button:hover {
+    background-color: #a29bfe;
+    transform: scale(1.05);
+  }
+  

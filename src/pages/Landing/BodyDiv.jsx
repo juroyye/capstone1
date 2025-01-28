@@ -1,8 +1,8 @@
 import React from 'react';
 import './BodyDiv.css';
-import demoImg from '../../imports/images/demo-img-capstone.jpg';
+import demoImg from '../../imports/images/stocksDemo1.png';
 import { Carousel } from 'react-bootstrap';
-import demoImg2 from '../../imports/images/demoImg2.jpg'
+import demoImg2 from '../../imports/images/newsDemo2.png'
 import demoImg3 from '../../imports/images/demoImg3.jpg'
 import { useNavigate } from "react-router-dom";
 
@@ -19,13 +19,13 @@ const BodyDiv = () => {
       <div className="image-div slide-in-from-top">
         <Carousel>
           <Carousel.Item>
-            <img className="d-block w-100" src={demoImg} alt="First slide" />
+            <img className="d-block w-200" src={demoImg} alt="First slide" />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={demoImg2} alt="Second slide" />
+            <img className="d-block w-200" src={demoImg2} alt="Second slide" />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={demoImg3} alt="Third slide" />
+            <img className="d-block w-200" src={demoImg3} alt="Third slide" />
           </Carousel.Item>
         </Carousel>
       </div>

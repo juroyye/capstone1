@@ -1,5 +1,6 @@
 import Sidebar from '../../components/sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import Navbar from '../../components/navbar/Navbar';
 import '../UserDash/UserDash.css'
 import Overlay from '../../components/overlay/Overlay';
@@ -29,8 +30,8 @@ ChartJS.register(
 
 
 const UserDash = () => {
-    const userDashButtons = [ 
-      { label: "Logout", route: "/" },]; 
+  const navigate = useNavigate();
+    const userDashButtons = []; 
     const [isOverlayVisible, setOverlayVisible] = useState(false); 
     const [selectedStock, setSelectedStock] = useState(null); 
     const [addedStocks, setAddedStocks] = useState([]);
@@ -148,13 +149,13 @@ const UserDash = () => {
             <Navbar buttons={userDashButtons} />
             <Sidebar onStockClick={handleStockClick} />
             {isOverlayVisible && (
-        <Overlay stock={selectedStock} onClose={handleCloseOverlay} onAddStock={handleAddStock}/>
-      )}
+                <Overlay stock={selectedStock} onClose={handleCloseOverlay} onAddStock={handleAddStock}/>
+             )}
 
-      <div className='content-container'>
-        <div className="stocks-grid">
-        {addedStocks.map((stock, index) => (
-          <div key={index} className="stock-box">
+             <div className='content-container'>
+             <div className="stocks-grid">
+                {addedStocks.map((stock, index) => (
+             <div key={index} className="stock-box">
             <h4>{stock.description} ({stock.symbol})</h4>
             <button 
               className="remove-stock-button" 
@@ -177,9 +178,19 @@ const UserDash = () => {
               }}
             />
           </div>
-        ))}
+             ))}
+        
           </div>
+          
         </div>
+         <div className="button-group">
+      <button className="news-button" onClick={() => navigate('/news')}>
+        News
+      </button>
+      <button className="logout-button" onClick={() => navigate('/')}>
+        Logout
+      </button>
+      </div>
       </div>
     );
 };

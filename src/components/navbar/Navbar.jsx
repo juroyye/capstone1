@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import logo from '../../imports/images/enmasse.png'
+import logo from '../../imports/images/completeenmasse.png'
 
 const Navbar = ({ buttons }) => {
   return (

@@ -11,6 +11,7 @@ const News = () => {
     const [newsArticles, setNewsArticles] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [visibleCount, setVisibleCount] = useState(3);
 
     useEffect(() => {
       const fetchNews = async () => {
@@ -33,14 +34,18 @@ const News = () => {
   
       fetchNews();
     }, []);
+
+    const handleShowMore = () => {
+      setVisibleCount((prevCount) => prevCount + 3);
+    };
   
-    if (loading) {
-      return <div className="news-container">Loading news...</div>;
-    }
+    // if (loading) {
+    //   return <div className="news-container">Loading news...</div>;
+    // }
   
-    if (error) {
-      return <div className="news-container">{error}</div>;
-    }
+    // if (error) {
+    //   return <div className="news-container">{error}</div>;
+    // }
   
 
   return (
@@ -48,7 +53,7 @@ const News = () => {
        <Navbar buttons={userDashButtons} />
     <h1 className="news-title">Latest News</h1>
     <div className="news-list">
-      {newsArticles.map((article, index) => (
+    {newsArticles.slice(0, visibleCount).map((article, index) => (
         <div key={index} className="news-article">
           <h2 className="news-headline">{article.headline}</h2>
           <p className="news-source">Source: {article.source}</p>
@@ -63,6 +68,11 @@ const News = () => {
         </div>
       ))}
     </div>
+    {visibleCount < newsArticles.length && (
+        <button className="show-more-button" onClick={handleShowMore}>
+          Show More
+        </button>
+      )}
   </div>
   )
 }

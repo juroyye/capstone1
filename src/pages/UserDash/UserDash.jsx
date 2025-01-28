@@ -93,8 +93,6 @@ const UserDash = () => {
         }
 
         const stockSymbol = stockData.symbol;
-        
-
         try {
           
           const url = `http://localhost:8080/api/portfolios/addStock?userId=${userId}&stockSymbol=${stockSymbol}`;

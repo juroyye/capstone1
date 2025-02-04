@@ -3,7 +3,7 @@ import './BodyDiv.css';
 import demoImg from '../../imports/images/stocksDemo1.png';
 import { Carousel } from 'react-bootstrap';
 import demoImg2 from '../../imports/images/newsDemo2.png'
-import demoImg3 from '../../imports/images/demoImg3.jpg'
+import demoImg3 from '../../imports/images/demoImg3.png'
 import { useNavigate } from "react-router-dom";
 
 const BodyDiv = () => {

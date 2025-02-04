@@ -1,6 +1,7 @@
 import '../News/News.css'
 import React, { useState, useEffect } from "react";
 import Navbar from '../../components/navbar/Navbar'
+import arrow from '../../imports/images/icons8-arrow-48.png'
 
 const News = () => {
   const userDashButtons = [
@@ -56,14 +57,14 @@ const News = () => {
     {newsArticles.slice(0, visibleCount).map((article, index) => (
         <div key={index} className="news-article">
           <h2 className="news-headline">{article.headline}</h2>
-          <p className="news-source">Source: {article.source}</p>
+          <p className="news-source">{article.summary}</p>
           <a
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
             className="news-link"
           >
-            Read Full Article
+            <img src={arrow} className='arrow' alt='arrow to article' />
           </a>
         </div>
       ))}

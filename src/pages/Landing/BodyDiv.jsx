@@ -19,13 +19,13 @@ const BodyDiv = () => {
       <div className="image-div slide-in-from-top">
         <Carousel>
           <Carousel.Item>
-            <img className="d-block w-200" src={demoImg} alt="First slide" />
+            <img src={demoImg} alt="First slide" />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-200" src={demoImg2} alt="Second slide" />
+            <img src={demoImg2} alt="Second slide" />
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-200" src={demoImg3} alt="Third slide" />
+            <img  src={demoImg3} alt="Third slide" />
           </Carousel.Item>
         </Carousel>
       </div>

@@ -76,3 +76,20 @@
     transform: scale(1.05);
   }
   
+  .emptyPlus{
+    position: absolute;
+    top: 45%;
+    left: 55%; 
+    color: white;
+    text-align: center;
+  }
+
+  .emptyPlus p{
+    position: relative;
+    left: -20px;
+  }
+  
+  .placeholder-text {
+    font-size: 1.2em;
+  }
+  

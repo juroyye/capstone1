@@ -2,8 +2,9 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Navbar from '../../components/navbar/Navbar';
-import '../UserDash/UserDash.css'
+import '../UserDash/UserDash.css';
 import Overlay from '../../components/overlay/Overlay';
+import plusSignImage from '../../imports/images/icons8-plus-sign-100.png';
 import trashPic from '../../imports/images/purpTrash.png';
 import { Line } from "react-chartjs-2";
 import {
@@ -154,7 +155,8 @@ const UserDash = () => {
 
              <div className='content-container'>
              <div className="stocks-grid">
-                {addedStocks.map((stock, index) => (
+             {addedStocks.length > 0 ? (
+                addedStocks.map((stock, index) => (
              <div key={index} className="stock-box">
             <h4>{stock.description} ({stock.symbol})</h4>
             <button 
@@ -178,7 +180,13 @@ const UserDash = () => {
               }}
             />
           </div>
-             ))}
+             ))
+             ) : (
+              <div className="emptyPlus">
+              <img className='plus-sign' src={plusSignImage} alt="Plus sign" />
+              <p>No stocks added yet.</p>
+            </div>
+          )}
         
           </div>
           

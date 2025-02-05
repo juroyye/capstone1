@@ -40,13 +40,13 @@ const News = () => {
       setVisibleCount((prevCount) => prevCount + 3);
     };
   
-    // if (loading) {
-    //   return <div className="news-container">Loading news...</div>;
-    // }
+    if (loading) {
+      return <div className="news-container">Loading news...</div>;
+    }
   
-    // if (error) {
-    //   return <div className="news-container">{error}</div>;
-    // }
+    if (error) {
+      return <div className="news-container">{error}</div>;
+    }
   
 
   return (

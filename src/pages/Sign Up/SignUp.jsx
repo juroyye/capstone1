@@ -27,7 +27,6 @@ const SignUp = () => {
             });
             const data = await response.text();
             if (response.ok) {
-                alert("User registered successfully");
                 navigate("/login");
             } else {
                 alert(data);
@@ -47,12 +46,15 @@ const SignUp = () => {
                         <h3>Sign Up</h3>
                         <h6>10,000+ stocks at your fingertips</h6>
                         <div className="form-group">
+                            Username
                             <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleInputChange} required />
                         </div>
                         <div className="form-group">
+                            Email
                             <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} required />
                         </div>
                         <div className="form-group">
+                            Password
                             <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleInputChange} required />
                         </div>
                         <button type="submit" className="btnsignup">Sign Up</button>

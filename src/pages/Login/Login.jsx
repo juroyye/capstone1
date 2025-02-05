@@ -55,6 +55,7 @@ const handleSubmit = async (e) => {
     <h3>Login</h3>
     <h6>10,000+ stocks at your fingertips</h6>
     <div class="form-group">
+      Username
       <input 
       type="text" 
       name='username'
@@ -64,6 +65,7 @@ const handleSubmit = async (e) => {
       required />
     </div>
     <div class="form-group">
+      Password
       <input 
       type="password" 
       name='password'

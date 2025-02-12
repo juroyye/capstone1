@@ -2,6 +2,7 @@ import '../News/News.css'
 import React, { useState, useEffect } from "react";
 import Navbar from '../../components/navbar/Navbar'
 import arrow from '../../imports/images/icons8-arrow-48.png'
+import loadingIcon from '../../imports/images/1487.gif'
 
 const News = () => {
   const userDashButtons = [
@@ -41,7 +42,11 @@ const News = () => {
     };
   
     if (loading) {
-      return <div className="news-container">Loading news...</div>;
+      return <div className="news-sectioner">
+        <div className='news-box'>
+        <img src={loadingIcon} alt='loading...' />
+        </div>
+      </div>;
     }
   
     if (error) {

@@ -36,6 +36,9 @@ const UserDash = () => {
     const [isOverlayVisible, setOverlayVisible] = useState(false); 
     const [selectedStock, setSelectedStock] = useState(null); 
     const [addedStocks, setAddedStocks] = useState([]);
+    const [stockColumns, setStockColumns] = useState(2);
+
+
 
     useEffect(() => {
       const userId = localStorage.getItem("userId");
@@ -154,15 +157,28 @@ const UserDash = () => {
              )}
 
              <div className='content-container'>
-             <div className="stocks-grid">
-             {addedStocks.length > 0 ? (
-                addedStocks.map((stock, index) => (
-             <div key={index} className="stock-box">
-            <h4>{stock.description} ({stock.symbol})</h4>
-            <button 
-              className="remove-stock-button" 
-              onClick={() => handleRemoveStock(index)}
-            >
+
+             <div className="stock-toggle">
+    <label htmlFor="stockColumns">Stocks per Row: </label>
+    <select 
+      id="stockColumns" 
+      value={stockColumns} 
+      onChange={(e) => setStockColumns(Number(e.target.value))}
+    >
+      <option value={2}>2 per Row</option>
+      <option value={3}>3 per Row</option>
+    </select>
+  </div>
+
+  <div className="stocks-grid" style={{ gridTemplateColumns: `repeat(${stockColumns}, 1fr)` }}>
+    {addedStocks.length > 0 ? (
+      addedStocks.map((stock, index) => (
+        <div key={index} className="stock-box">
+          <h4>{stock.description} ({stock.symbol})</h4>
+          <button 
+            className="remove-stock-button" 
+            onClick={() => handleRemoveStock(index)}
+          >
             <img src={trashPic} alt='remove icon' />
              </button>
             <Line

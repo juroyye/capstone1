@@ -24,7 +24,7 @@ const About = () => {
 
       <div className='text-box'>
                 <h1 className='about-text'>Grow Your <span className='about-highlights'>Wealth</span>, One Trade at a Time.</h1>
-              <p>Our stock application is designed to provide investors and market enthusiasts with a single window of information to be empowered to make informed decisions. This application features the most powerful stock search to look for any stock's detailed information with ease, while a news feed curates the latest articles and updates about stocks and the greater economic scene. This application will serve as your most trusted buddy; be it an expert trader or newbie in the stock market.</p>
+              <p>Our stock application is designed to provide investors and market enthusiasts with a single window of information to be empowered to make informed decisions. This application features the most powerful stock search to look for any stock information with ease, while a news feed curates the latest articles and updates about stocks and the greater economic scene. This application will serve as your most trusted buddy; be it an expert trader or newbie in the stock market.</p>
               <button onClick={handleSignUpClick} className="sign-up-button">Sign Up</button>
           </div>
 

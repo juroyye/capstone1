@@ -71,7 +71,7 @@ const Overlay = ({ stock, onClose, onAddStock }) => {
         labels: ["Open", "High", "Low", "Current"],
         datasets: [
           {
-            label: `${stock.description} Stock Data`,
+            label: `${stock.description} Stock Data in Dollars`,
             data: [o, h, l, c],
             backgroundColor: "rgba(154, 28, 204, 0.4)",
             borderColor: "rgb(68, 70, 100)",

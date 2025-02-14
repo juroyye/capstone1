@@ -123,3 +123,25 @@
   justify-content: center;
   transition: all 0.3s ease-in-out;
 }
+.favorite-button {
+  position: relative;
+  left: 3px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: gray;
+  transition: color 0.3s ease;
+}
+
+.favorite-button.favorited {
+  color: purple;
+}
+
+.infoForm{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  top: 3px;
+  right: 5px;
+}

@@ -6,6 +6,7 @@ import '../UserDash/UserDash.css';
 import Overlay from '../../components/overlay/Overlay';
 import plusSignImage from '../../imports/images/icons8-plus-sign-100.png';
 import trashPic from '../../imports/images/purpTrash.png';
+import form from '../../imports/images/icons8-form-30.png'
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -37,6 +38,8 @@ const UserDash = () => {
     const [selectedStock, setSelectedStock] = useState(null); 
     const [addedStocks, setAddedStocks] = useState([]);
     const [stockColumns, setStockColumns] = useState(2);
+    const [favoriteStocks, setFavoriteStocks] = useState({});
+
 
 
 
@@ -45,7 +48,8 @@ const UserDash = () => {
       if (userId) {
           const localStorageKey = `stocks_${userId}`;
           const savedStocks = localStorage.getItem(localStorageKey);
-          
+          const savedFavorites = localStorage.getItem(`favorites_${userId}`);
+
           if (savedStocks) {
             try {
                 const parsedStocks = JSON.parse(savedStocks);
@@ -60,22 +64,35 @@ const UserDash = () => {
                 console.error("Error parsing saved stocks:", error);
                 setAddedStocks([]);
             }
-        } else {
-          fetch(`http://localhost:8080/api/portfolios/user/${userId}`)
-          .then((response) => response.json())
-          .then((data) => {
-              if (Array.isArray(data)) {
-                  setAddedStocks(data);
-                  localStorage.setItem(localStorageKey, JSON.stringify(data));
-              } else {
-                  console.error('API response is not an array:', data);
-                  setAddedStocks([]);
-              }
-          })
-          .catch((error) => console.error('Error fetching stocks:', error));
+        }    
+    if (savedFavorites) {
+      try {
+        const parsedFavorites = JSON.parse(savedFavorites);
+        setFavoriteStocks(parsedFavorites || {}); // Ensure it's an object
+      } catch (error) {
+        console.error("Error parsing saved favorites:", error);
+        setFavoriteStocks({});
+      }
+    }
+
+    
+    if (!savedStocks) {
+      fetch(`http://localhost:8080/api/portfolios/user/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setAddedStocks(data);
+            localStorage.setItem(localStorageKey, JSON.stringify(data));
+          } else {
+            console.error('API response is not an array:', data);
+            setAddedStocks([]);
+          }
+        })
+        .catch((error) => console.error('Error fetching stocks:', error));
+    }
   }
-}
-  }, []);
+}, []);
+
   
     const handleStockClick = (stock) => {
         setSelectedStock(stock); 
@@ -146,6 +163,22 @@ const UserDash = () => {
         });
     };
 
+    const toggleFavorite = (stockSymbol) => {
+      setFavoriteStocks((prevFavorites) => {
+        const updatedFavorites = {
+          ...prevFavorites,
+          [stockSymbol]: !prevFavorites[stockSymbol],
+        };
+    
+    
+        const userId = localStorage.getItem("userId");
+        localStorage.setItem(`favorites_${userId}`, JSON.stringify(updatedFavorites));
+    
+        return updatedFavorites;
+      });
+    };
+    
+
       
 
     return (
@@ -175,12 +208,26 @@ const UserDash = () => {
       addedStocks.map((stock, index) => (
         <div key={index} className="stock-box">
           <h4>{stock.description} ({stock.symbol})</h4>
-          <button 
-            className="remove-stock-button" 
-            onClick={() => handleRemoveStock(index)}
-          >
+          
+          <div className="stock-actions">
+         
+          <button className='infoForm' onClick={() => handleRemoveStock(index)}>
+            <img src={form} alt='remove icon' />
+          </button>
+
+
+          <button className="remove-stock-button" onClick={() => handleRemoveStock(index)}>
             <img src={trashPic} alt='remove icon' />
-             </button>
+          </button>
+
+         
+          <button 
+            className={`favorite-button ${favoriteStocks[stock.symbol] ? "favorited" : ""}`}
+            onClick={() => toggleFavorite(stock.symbol)}
+          >
+            {favoriteStocks[stock.symbol] ? "★" : "☆"}
+          </button>
+        </div>
             <Line
               data={stock.chartData}
               options={{

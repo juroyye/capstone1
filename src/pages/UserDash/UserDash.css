@@ -48,11 +48,10 @@
 
 .button-group {
     position: absolute; 
-    top: 10%;
+    top: 2%;
     right: 22px;
     display: flex;
-    flex-direction: column; 
-    gap: 30px; 
+    gap: 12px; 
   }
   
   .news-button,
@@ -101,7 +100,7 @@
   justify-content: center;
   margin-bottom: 10px;
   margin-top: 5px;
-  color: white;
+  color: rgb(124, 58, 237);
   font-size: 1rem;
     
 }
@@ -112,7 +111,7 @@
   font-size: 1rem;
   border-radius: 5px;
   background: #1a1a1a;
-  color: white;
+  color: rgb(124, 58, 237);
   border: 1px solid #6a0dad;
 }
 

@@ -224,8 +224,8 @@ const UserDash = () => {
       value={stockColumns} 
       onChange={(e) => setStockColumns(Number(e.target.value))}
     >
-      <option value={2}>2 per Row</option>
-      <option value={3}>3 per Row</option>
+      <option value={2}>2</option>
+      <option value={3}>3</option>
     </select>
   </div>
 

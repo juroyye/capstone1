@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from '../../components/navbar/Navbar';
 import '../UserDash/UserDash.css';
 import Overlay from '../../components/overlay/Overlay';
+import StockDataOverlay from "../../components/infoOverlay/StockDataOverlay";
 import plusSignImage from '../../imports/images/icons8-plus-sign-100.png';
 import trashPic from '../../imports/images/purpTrash.png';
 import form from '../../imports/images/icons8-form-30.png'
@@ -39,6 +40,9 @@ const UserDash = () => {
     const [addedStocks, setAddedStocks] = useState([]);
     const [stockColumns, setStockColumns] = useState(2);
     const [favoriteStocks, setFavoriteStocks] = useState({});
+    const [isStockOverlayVisible, setStockOverlayVisible] = useState(false);
+    const [selectedStockData, setSelectedStockData] = useState(null);
+
 
 
 
@@ -177,6 +181,20 @@ const UserDash = () => {
         return updatedFavorites;
       });
     };
+
+    const handleOpenStockOverlay = async (stockSymbol) => {
+      try {
+          const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=ctivuchr01qgfbsvlrggctivuchr01qgfbsvlrh0`);
+          if (!response.ok) {
+              throw new Error("Failed to fetch stock data");
+          }
+          const data = await response.json();
+          setSelectedStockData(data);
+          setStockOverlayVisible(true);
+      } catch (error) {
+          console.error("Error fetching stock data:", error);
+      }
+  };
     
 
       
@@ -188,6 +206,14 @@ const UserDash = () => {
             {isOverlayVisible && (
                 <Overlay stock={selectedStock} onClose={handleCloseOverlay} onAddStock={handleAddStock}/>
              )}
+
+        {isStockOverlayVisible && (
+          <StockDataOverlay 
+        stockData={selectedStockData} 
+        onClose={() => setStockOverlayVisible(false)} 
+         />
+          )}
+
 
              <div className='content-container'>
 
@@ -211,8 +237,8 @@ const UserDash = () => {
           
           <div className="stock-actions">
          
-          <button className='infoForm' onClick={() => handleRemoveStock(index)}>
-            <img src={form} alt='remove icon' />
+          <button className='infoForm' onClick={() => handleOpenStockOverlay(stock.symbol)}>
+            <img src={form} alt='info form' />
           </button>
 
 

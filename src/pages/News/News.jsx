@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from '../../components/navbar/Navbar'
 import arrow from '../../imports/images/icons8-arrow-48.png'
 import loadingIcon from '../../imports/images/1487.gif'
+import newspaper from '../../imports/images/icons8-news-50.png';
 
 const News = () => {
   const userDashButtons = [
@@ -61,6 +62,7 @@ const News = () => {
     <div className="news-list">
     {newsArticles.slice(0, visibleCount).map((article, index) => (
         <div key={index} className="news-article">
+          <img src={newspaper} className='newspaper-icon' />
           <h2 className="news-headline">{article.headline}</h2>
           <p className="news-source">{article.summary}</p>
           <a

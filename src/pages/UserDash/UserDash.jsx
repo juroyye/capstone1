@@ -195,6 +195,8 @@ const UserDash = () => {
           console.error("Error fetching stock data:", error);
       }
   };
+
+  
     
 
       

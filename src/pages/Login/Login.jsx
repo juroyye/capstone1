@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import React, {useState} from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import { useNavigate } from "react-router-dom";
+import usernameIcon from '../../imports/images/icons8-user-24.png';
+import passwordIcon from '../../imports/images/passyWord.png';
+import loginIcon from '../../imports/images/mainLogin.png';
 
 
 const Login = () => {
@@ -52,10 +55,11 @@ const handleSubmit = async (e) => {
       
       <div class="login-container">
   <form class="login-form" onSubmit={handleSubmit}>
-    <h3>Login</h3>
+  <img src={loginIcon} alt="login icon" className="login-Icon"/>
+    <h5>Login</h5>
     <h6>10,000+ stocks at your fingertips</h6>
     <div class="form-group">
-      Username
+      <img src={usernameIcon} alt="username icon" className="input-icon" />
       <input 
       type="text" 
       name='username'
@@ -65,7 +69,7 @@ const handleSubmit = async (e) => {
       required />
     </div>
     <div class="form-group">
-      Password
+      <img src={passwordIcon} alt="password icon" className="input-icon" />
       <input 
       type="password" 
       name='password'

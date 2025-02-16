@@ -26,14 +26,11 @@
     text-align: center;
   }
   
-  .login-form h3 {
+  .login-form h5 {
     color: rgb(124, 58, 237);
     margin-bottom: 20px;
   }
   
-  .form-group {
-    margin-bottom: 15px;
-  }
   
   .form-group input {
     width: 100%;
@@ -65,6 +62,11 @@
   
   .signup-link:hover {
     text-decoration: underline;
+  }
+
+  .login-Icon{
+    position: relative;
+    left: 137px;
   }
   
   

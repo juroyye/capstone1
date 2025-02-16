@@ -1,13 +1,13 @@
 .btnsignup{
         display: flex;
         justify-content: center;
+        margin-top: 18px;
         padding: 10px;
         border: none;
         border-radius: 5px;
         color: white;
         cursor: pointer;
         width: 100%; 
-        padding: 15px 12px;
         background-color: #6a0dad;
         border: none;
         border-radius: 4px;
@@ -23,4 +23,18 @@
 
 input{
         color: #6a0dad;
+}
+
+.input-icon{
+        position: relative;
+        top: 33px;
+        left: 5px;
+}
+.form-group input {
+        padding-left: 35px; 
+    }
+
+.signup-Icon{
+        position: relative;
+        left: 133px;
 }

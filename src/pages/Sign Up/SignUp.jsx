@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Sign Up/SignUp.css";
 import Navbar from "../../components/navbar/Navbar";
+import usernameIcon from '../../imports/images/icons8-user-24.png';
+import passwordIcon from '../../imports/images/passyWord.png';
+import emailingIcon from '../../imports/images/emaily.png';
+import signupIcon from '../../imports/images/mainSignup.png'
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -36,25 +40,29 @@ const SignUp = () => {
             alert("An error occurred. Please try again.");
         }
     };
-
+   
     return (
         <div className="signup-page">
             <Navbar buttons={[{ label: "Home", route: "/" }, { label: "About", route: "/about" }, { label: "Login", route: "/login" }]} />
             <div className="loginBod">
                 <div className="login-container">
-                    <form className="login-form" onSubmit={handleSubmit}>
-                        <h3>Sign Up</h3>
+                    <form className="login-form" onSubmit={handleSubmit}> 
+                        
+                        <img src={signupIcon} alt="signup icon" className="signup-Icon"/>
+    
+                        <h5>Sign Up</h5>
+                    
                         <h6>10,000+ stocks at your fingertips</h6>
                         <div className="form-group">
-                            Username
+                            <img src={usernameIcon} alt="username icon" className="input-icon" />
                             <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleInputChange} required />
                         </div>
                         <div className="form-group">
-                            Email
+                            <img src={emailingIcon} alt="email icon" className="input-icon" />
                             <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} required />
                         </div>
                         <div className="form-group">
-                            Password
+                            <img src={passwordIcon} alt="password icon" className="input-icon" />
                             <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleInputChange} required />
                         </div>
                         <button type="submit" className="btnsignup">Sign Up</button>
